@@ -1,7 +1,8 @@
 package com.devsuperior.desafio01;
 
-import com.devsuperior.entities.Employee;
-import com.devsuperior.services.SalaryService;
+import com.devsuperior.entities.Order;
+import com.devsuperior.services.OrderService;
+import com.devsuperior.services.ShippingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,7 +14,7 @@ import org.springframework.context.annotation.ComponentScan;
 public class Desafio01Application implements CommandLineRunner {
 
 	@Autowired
-	private SalaryService salaryService;
+	private OrderService orderService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Desafio01Application.class, args);
@@ -21,7 +22,8 @@ public class Desafio01Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Employee employee = new Employee("Maria", 4000.0);
-		System.out.println(salaryService.netSalary(employee));
+		Order order = new Order(1309, 95.90, 0.0);
+		System.out.println("Pedido código " + order.getCode());
+		System.out.printf("Valor total: R$ %.2f%n", orderService.total(order));
 	}
 }
